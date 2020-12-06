@@ -34,6 +34,7 @@ class ArticlesController < ApplicationController
         width: 32,
         height: 32
       })
+      marker.json({id: article.id, icon: ''})
     end
   end
 
