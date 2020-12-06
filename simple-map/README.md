@@ -1,5 +1,9 @@
 # README
 
+git clone https://github.com/nekakoshi/lessons.git
+cd lessons/simple-map
+
+
 環境変数用途のenvファイルを作成する。
 
 ```
@@ -16,6 +20,7 @@ GOOGLE_MAP_APIKEY=xxxxxxxxxxxxxxxxxxx
 データベースの初期
 
 ```
+$ bundle install 
 $ bundle exec rails db:create
 Created database 'db/development.sqlite3'
 Created database 'db/test.sqlite3
