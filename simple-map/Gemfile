@@ -57,3 +57,5 @@ gem 'bootstrap-sass'
 gem 'twitter-bootstrap-rails'
 
 gem 'font-awesome-rails'
+
+gem 'rails-i18n', '~> 5.1'
