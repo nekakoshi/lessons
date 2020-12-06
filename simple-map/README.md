@@ -1,24 +1,31 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+環境変数用途のenvファイルを作成する。
 
-Things you may want to cover:
+```
+$ cp .env{_origin,}
+```
 
-* Ruby version
+GoogleMapAPI用途の環境変数にAPIKeyを追加する。
 
-* System dependencies
+```
+$ vim .env 
+GOOGLE_MAP_APIKEY=xxxxxxxxxxxxxxxxxxx
+```
 
-* Configuration
+データベースの初期
 
-* Database creation
+```
+$ bundle exec rails db:create
+Created database 'db/development.sqlite3'
+Created database 'db/test.sqlite3
 
-* Database initialization
+$ bundle exec rails db:migrate
 
-* How to run the test suite
+$ bundle exec rake db:seed
+```
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+サーバを起動する。
+```
+$ bundle exec rails s 
+```
