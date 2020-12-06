@@ -67,3 +67,5 @@ gem "geocoder"
 gem "geokit-rails"
 
 gem 'dotenv-rails'
+
+gem 'i18n_generators'
