@@ -15,6 +15,22 @@
     </tr>
   </thead>
   <tbody>
+    <div id="map" style='width: 100%; height: 500px;'></div>
+    <br>
+    <div class="row">
+      <%= form_for(Article.new, url: articles_path, method: :get,  class: "form-horizontal") do |f| %>
+        <div class="col-sm-3">
+          <%= f.select :distance, [['1km', 1], ['2km', 2], ['3km', 3], ['5km', 5], ['10km', 10], ['20km', 20]], { include_blank: false, selected: params[:distance] }, {name: 'distance',class: "form-control" } %>
+        </div>
+        <div class="col-sm-3"></div>
+        <div class="col-sm-4"></div>
+        <div class="col-sm-2">
+          <input type="submit" name="commit" value="検索する" class="btn btn-primary" data-disable-with="検索する" />
+        </div>
+      <% end %>
+    </div>
+
+
     <% @articles.each do |article| %>
       <tr>
         <td><%= link_to article.id, article_path(article) %></td>
@@ -42,3 +58,16 @@
 <%= link_to t('.new', :default => t("helpers.links.new")),
             new_article_path,
             :class => 'btn btn-primary' %>
+
+<script src="//maps.google.com/maps/api/js?key=<%= ENV.fetch("GOOGLE_MAP_APIKEY") %>"></script>
+<script src="//cdn.rawgit.com/mahnunchik/markerclustererplus/master/dist/markerclusterer.min.js"></script>
+
+<script type="text/javascript">
+  handler = Gmaps.build('Google');
+  handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+    markers = handler.addMarkers(<%=raw @location_markers.to_json %>);
+    handler.bounds.extendWith(markers);
+    handler.fitMapToBounds();
+    handler.getMap().setZoom(13);
+  });
+</script>

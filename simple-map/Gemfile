@@ -59,3 +59,11 @@ gem 'twitter-bootstrap-rails'
 gem 'font-awesome-rails'
 
 gem 'rails-i18n', '~> 5.1'
+
+gem "gmaps4rails"
+
+gem "geocoder"
+
+gem "geokit-rails"
+
+gem 'dotenv-rails'

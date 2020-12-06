@@ -4,7 +4,37 @@ class ArticlesController < ApplicationController
   # GET /articles
   # GET /articles.json
   def index
-    @articles = Article.all
+    ### 基準点の場所
+    article =  Article.first
+  
+    ### 検索範囲の数値、単位はKM
+    ### 単位はKM
+    ### デフォルトは10
+    distance_km = params[:distance] || 10
+  
+    ### 緯度経度の検索
+    ### 基準点からの検索距離内を条件として検索
+    ### 緯度経度を保持しているデータを対象とする
+    @articles = Article.within(distance_km, origin: article.location)
+      .by_distance(origin: article.location)
+      .where.not(id: article.location)
+  
+    ### 表示マーカーのフォーマットを整形する
+    @location_markers = Gmaps4rails.build_markers @articles do |article, marker|
+      ### マーカーに緯度経度のデータを追加する。
+      marker.lat article.latitude
+      marker.lng article.longitude
+
+      ### クリック時の表示情報を追加する。(HTMLタグ利用可能)
+      marker.infowindow "<strong>#{article.title}</strong>"
+
+      ### 表示時のアイコンを指定する。
+      marker.picture({
+        #url: ActionController::Base.helpers.asset_path('aed.png'),
+        width: 32,
+        height: 32
+      })
+    end
   end
 
   # GET /articles/1
