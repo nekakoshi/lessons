@@ -1,7 +1,9 @@
 # README
 
+```
 git clone https://github.com/nekakoshi/lessons.git
 cd lessons/simple-map
+```
 
 
 環境変数用途のenvファイルを作成する。
